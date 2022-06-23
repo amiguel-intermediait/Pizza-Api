@@ -99,7 +99,7 @@ export const removefoodTypesService = async (foodtype: string[], recipe:string) 
 }
 
 export const removeAllergensService = async (allergens: string[], recipe:string) => {
-    const { ingredients } = await Recipe.findOne({where: { name: recipe  },
+    const ingredients= await Recipe.findOne({where: { name: recipe  },
         include: [
           {
             model: Ingredient,
