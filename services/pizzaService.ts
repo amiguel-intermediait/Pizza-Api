@@ -94,4 +94,5 @@ export const removefoodTypesService = async (foodtype: string[], recipe:string) 
             }
         }
     }
+    return responseArray;
 }
