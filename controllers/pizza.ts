@@ -39,7 +39,7 @@ export const hasFoodTypes = async(req: any, res: Response) => {
 export const removefoodTypes = async(req: Request, res: Response) => {
     try {
         const { foodtype, recipe } = req.body;
-        const result =  removefoodTypesService(foodtype,recipe);
+        const result = await removefoodTypesService(foodtype,recipe);
         res.json({
             result
         })
@@ -54,7 +54,7 @@ export const removefoodTypes = async(req: Request, res: Response) => {
 export const removeAllergens = async(req: Request, res: Response) => {
     try {
         const { allergens, recipe } = req.body;
-        const result =  removeAllergensService(allergens,recipe);
+        const result =  await removeAllergensService(allergens,recipe);
         res.json({
 
         })
