@@ -1,6 +1,6 @@
 export interface ingredientInterface {
     name: string;
-    isAllergen: boolean;
+    isAllergen: true;
     foodtype: foodtypeInterface;
   }
 

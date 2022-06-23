@@ -1,8 +1,7 @@
-import e from "express";
 import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredientTypeInterface, ingredientAllergent } from "../interfaces/interfaces";
-const Recipe = require("../models/foodtype") ;
+const Recipe = require("../models/recipe") ;
 const Ingredient = require("../models/ingredient");
-const Foodtype = require("../models/recipe");
+const Foodtype = require("../models/foodtype");
 
 export const hasAllegensService = async (allergens: string[], recipe:string) => {
     const { ingredients } = await Recipe.findOne({where: { name: recipe  },
@@ -68,7 +67,7 @@ export const hasFoodTypeService = async (foodtype: string[], recipe:string) => {
 }
 
 export const removefoodTypesService = async (foodtype: string[], recipe:string) => {
-    const ingredients  = await Recipe.findOne({where: { name: recipe  },
+    const { ingredients } = await Recipe.findOne({where: { name: recipe  },
         include: [
           {
             model: Ingredient,
@@ -110,25 +109,5 @@ export const removeAllergensService = async (allergens: string[], recipe:string)
         ],
     });
     console.log(ingredients);
-    const ingredientsArray: foodtypeInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
-        name: ingredient.foodtype.name,
-        isAllergen: ingredient.foodtype.isAllergen
-    }
-));
-
-    const foodtypeArray: arrayStringInterface[] = allergens.map((allergen: string) => ({
-        name:allergen
-        }
-    ));
-    let responseArray : ingredientAllergent[] = [];
-    for(let i = 0; i < ingredientsArray.length; i++){
-        for(let j = 0; j < foodtypeArray.length; j++){
-            if((ingredientsArray[i].isAllergen)&&(ingredientsArray[i].name == foodtypeArray[j].name)){
-                console.log('lala')
-            }else{
-                responseArray.push(ingredientsArray[i])
-            }
-        }
-    }
-    return responseArray;
+    return ingredients;
 }

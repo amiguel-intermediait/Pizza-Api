@@ -1,12 +1,5 @@
 import { Request, Response } from "express"
 import { hasAllegensService, hasFoodTypeService, removeAllergensService, removefoodTypesService } from "../services/pizzaService"
-import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredientTypeInterface, ingredientAllergent } from "../interfaces/interfaces";
-const Recipe = require("../models/foodtype") ;
-const Ingredient = require("../models/ingredient");
-const Foodtype = require("../models/recipe");
-
-
-
 
 export const hasAllergens = async(req: any, res: Response) => {
     try {
