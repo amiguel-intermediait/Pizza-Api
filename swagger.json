@@ -88,8 +88,59 @@
             }
           }
         }
+      },
+      "/pizza/removeallergens": {
+        "post": {
+          "tags": ["Pizza"],
+          "summary": "Remove allergens",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/deleteAllergensRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/hasFoodTypesResponse"
+              }
+            }
+          }
+        }
+      },
+      "/pizza/removefoodtypes": {
+        "post": {
+          "tags": ["Pizza"],
+          "summary": "Remove fodd types",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/deleteFoodTypesRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/hasFoodTypesResponse"
+              }
+            }
+          }
+        }
       }
     },
+  
     "definitions": {
       "deleteAllergensRequest": {
         "required": ["allergens", "recipe"],
