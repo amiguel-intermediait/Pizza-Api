@@ -4,9 +4,12 @@ import sequelize from '../db/db';
 import ingredientRoutes from '../routes/ingredient'
 import recipeRoutes from '../routes/recipe'
 import pizzaRoutes from '../routes/pizza'
+import * as swaggerUi from 'swagger-ui-express';
 require('../db/asociations');
+const swaggerDocument = require('./swagger.json');
 
 class Server {
+
     private app: Application;
     private port: string;
     private paths = {
@@ -37,6 +40,11 @@ class Server {
         this.app.use(this.paths.pizza, pizzaRoutes);
         this.app.use(this.paths.recipes, recipeRoutes);
         this.app.use(this.paths.ingredient, ingredientRoutes);
+        this.app.use(
+            '/api-docs',
+            swaggerUi.serve, 
+            swaggerUi.setup(swaggerDocument)
+          );
     }
 
     middlewares(){
