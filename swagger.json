@@ -163,7 +163,7 @@
         }
       },
       "/:recipe/doubleingredients": {
-        "get": {
+        "post": {
           "tags": ["Pizza"],
           "summary": "double ingredients",
           "parameters": [
