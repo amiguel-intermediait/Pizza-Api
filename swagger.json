@@ -212,7 +212,11 @@
         }
       },
       "hasAllergensResponse": {
-        "type": "boolean"
+        "properties": {
+          "hasAllergen": {
+            "type": "boolean"
+          }
+        }
       },
       "deleteFoodTypesRequest": {
         "required": ["foodtype", "recipe"],
@@ -229,7 +233,11 @@
         }
       },
       "hasFoodTypesResponse": {
-        "type": "boolean"
+        "properties": {
+          "hasFoodType": {
+            "type": "boolean"
+          }
+        }
       },
       "getCaloriesResponse": {
         "properties": {

@@ -6,7 +6,10 @@ export const hasAllergens = async(req: any, res: Response) => {
         console.log(req.query);
         const allergens : string[] = req.query.allergens;
         const recipe :string = req.query.recipe;
-        return await hasAllegensService(allergens,recipe);
+        const hasAllergen =await hasAllegensService(allergens,recipe);
+        res.json({
+            hasAllergen
+        })
     } catch (error) {
         console.log(error);
         res.status(404).json({
@@ -20,7 +23,10 @@ export const hasFoodTypes = async(req: any, res: Response) => {
         console.log(req.query);
         const foodtype : string[] = req.query.foodtype;
         const recipe :string = req.query.recipe;
-        return await hasFoodTypeService(foodtype,recipe);
+        const hasFoodType= await hasFoodTypeService(foodtype,recipe);
+        res.json({
+            hasFoodType
+        })
     } catch (error) {
         console.log(error);
         res.status(404).json({
