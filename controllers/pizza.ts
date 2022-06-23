@@ -4,10 +4,16 @@ import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredie
 const Recipe = require("../models/foodtype") ;
 const Ingredient = require("../models/ingredient");
 const Foodtype = require("../models/recipe");
-export const hasAllergens = async(req: Request, res: Response) => {
+
+
+
+
+export const hasAllergens = async(req: any, res: Response) => {
     try {
-        const { allergens, recipe } = req.body;
-        return hasAllegensService(allergens,recipe);
+        console.log(req.query);
+        const allergens : string[] = req.query.allergens;
+        const recipe :string = req.query.recipe;
+        return await hasAllegensService(allergens,recipe);
     } catch (error) {
         console.log(error);
         res.status(404).json({
@@ -16,10 +22,12 @@ export const hasAllergens = async(req: Request, res: Response) => {
     }
 }
 
-export const hasFoodTypes = async(req: Request, res: Response) => {
+export const hasFoodTypes = async(req: any, res: Response) => {
     try {
-        const { foodtype, recipe } = req.body;
-        return hasFoodTypeService(foodtype,recipe);
+        console.log(req.query);
+        const foodtype : string[] = req.query.foodtype;
+        const recipe :string = req.query.recipe;
+        return await hasFoodTypeService(foodtype,recipe);
     } catch (error) {
         console.log(error);
         res.status(404).json({
