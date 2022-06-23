@@ -29,13 +29,21 @@
           "summary": "Validate if the recipes has allergens",
           "parameters": [
             {
-              "in": "body",
-              "name": "body",
+              "in": "query",
+              "name": "allergens",
               "description": "",
               "required": true,
-              "schema": {
-                "$ref": "#/definitions/hasAllergensRequest"
-              }
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+            },
+            {
+              "in": "query",
+              "name": "recipe",
+              "description": "",
+              "required": true,
+                "type": "string"
             }
           ],
           "responses": {
@@ -54,13 +62,21 @@
           "summary": "Validate if the recipes has food types",
           "parameters": [
             {
-              "in": "body",
-              "name": "body",
+              "in": "query",
+              "name": "foodtype",
               "description": "",
               "required": true,
-              "schema": {
-                "$ref": "#/definitions/hasFoodTypesRequest"
-              }
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+            },
+            {
+              "in": "query",
+              "name": "recipe",
+              "description": "",
+              "required": true,
+                "type": "string"
             }
           ],
           "responses": {
@@ -75,42 +91,7 @@
       }
     },
     "definitions": {
-      "User": {
-        "required": ["name", "_id", "companies"],
-        "properties": {
-          "_id": {
-            "type": "integer",
-            "uniqueItems": true
-          },
-          "isPublic": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string"
-          },
-          "books": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "amount": {
-                  "type": "number"
-                }
-              }
-            }
-          },
-          "companies": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "hasAllergensRequest": {
+      "deleteAllergensRequest": {
         "required": ["allergens", "recipe"],
         "properties": {
           "allergens": {
@@ -127,7 +108,7 @@
       "hasAllergensResponse": {
         "type": "boolean"
       },
-      "hasFoodTypesRequest": {
+      "deleteFoodTypesRequest": {
         "required": ["foodtype", "recipe"],
         "properties": {
           "foodtype": {
