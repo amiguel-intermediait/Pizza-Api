@@ -1,41 +1,13 @@
 import { Request, Response } from "express"
+import { hasAllegensService, hasFoodTypeService } from "../services/pizzaService"
 import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredientTypeInterface, ingredientAllergent } from "../interfaces/interfaces";
-const Recipe = require("../db/models/recipe") ;
-const Ingredient = require("../db/models/ingredient")
-const Foodtype = require("../db/models/foodtype")
+const Recipe = require("../models/foodtype") ;
+const Ingredient = require("../models/ingredient");
+const Foodtype = require("../models/recipe");
 export const hasAllergens = async(req: Request, res: Response) => {
     try {
         const { allergens, recipe } = req.body;
-        const { ingredients } = await Recipe.findOne({where: { name: recipe  },
-            include: [
-              {
-                model: Ingredient,
-                include: [
-                    Foodtype
-                ],
-              }
-            ],
-          });
-
-        const ingredientsArray: foodtypeInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
-                name: ingredient.foodtype.name,
-                isAllergen: ingredient.foodtype.isAllergen
-            }
-        ));
-
-        const allergensArray: arrayStringInterface[] = allergens.map((allergen: string) => ({
-                name:allergen
-            }
-        ));
-
-        for(let i = 0; i < ingredientsArray.length; i++ ){
-            for(let j = 0; j < allergensArray.length; j++){
-                if((ingredientsArray[i].isAllergen)&&(ingredientsArray[i].name == allergensArray[j].name)){
-                    return res.json(true);
-                }
-            }
-        }
-        return res.json(false);
+        return hasAllegensService(allergens,recipe);
     } catch (error) {
         console.log(error);
         res.status(404).json({
@@ -47,32 +19,7 @@ export const hasAllergens = async(req: Request, res: Response) => {
 export const hasFoodTypes = async(req: Request, res: Response) => {
     try {
         const { foodtype, recipe } = req.body;
-        const { ingredients } = await Recipe.findOne({where: { name: recipe  },
-            include: [
-              {
-                model: Ingredient,
-                include: [
-                    Foodtype
-                ],
-              }
-            ],
-        });
-        const ingredientsArray: foodtypeInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
-                name: ingredient.foodtype.name,
-            }
-        ));
-        const foodtypeArray: arrayStringInterface[] = foodtype.map((foodtype: string) => ({
-                name:foodtype
-            }
-        ));
-        for(let i = 0; i < ingredientsArray.length; i++ ){
-            for(let j = 0; j < foodtypeArray.length; j++){
-                if(ingredientsArray[i].name == foodtypeArray[j].name){
-                    return res.json(true);
-                }
-            }
-        }
-        return res.json(false);
+        return hasFoodTypeService(foodtype,recipe);
     } catch (error) {
         console.log(error);
         res.status(404).json({
@@ -83,34 +30,7 @@ export const hasFoodTypes = async(req: Request, res: Response) => {
 
 export const removefoodTypes = async(req: Request, res: Response) => {
     try {
-        const { foodtype, recipe } = req.body;
-        const { ingredients } = await Recipe.findOne({where: { name: recipe  },
-            include: [
-              {
-                model: Ingredient,
-                include: [
-                    Foodtype
-                ],
-              }
-            ],
-        });
-        const ingredientsArray: ingredientTypeInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
-            name: ingredient.name,
-            foodtype: ingredient.foodtype.name,
-            }
-        ));
-        const foodtypeArray: arrayStringInterface[] = foodtype.map((foodtype: string) => ({
-            name:foodtype
-            }
-        ));
-        let responseArray : ingredientTypeInterface[] = [];
-        for(let i = 0; i < ingredientsArray.length; i++){
-            for(let j = 0; j < foodtypeArray.length; j++){
-                if(ingredientsArray[i].foodtype !== foodtypeArray[j].name){
-                    responseArray.push(ingredientsArray[i])
-                }
-            }
-        }
+
         return res.json(responseArray);
     } catch (error) {
         console.log(error);

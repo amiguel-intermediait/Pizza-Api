@@ -1,6 +1,6 @@
-const recipe = require("./models/recipe") ;
-const ingredient = require("./models/ingredient");
-const foodtype = require("./models/foodtype")
+const recipe = require("../models/foodtype") ;
+const ingredient = require("../models/ingredient");
+const foodtype = require("../models/recipe");
 
 foodtype.hasMany(ingredient);
 ingredient.belongsTo(foodtype);
