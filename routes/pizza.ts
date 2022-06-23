@@ -5,8 +5,8 @@ const router = Router();
 
 router.get('/allergens', hasAllergens);
 router.get('/foodtypes', hasFoodTypes);
-router.delete('/removeallergens', removeAllergens);
-router.delete('/removefoodtypes',removefoodTypes);
+router.post('/removeallergens', removeAllergens);
+router.post('/removefoodtypes',removefoodTypes);
 // router.get('/',removeIngredients);
 // router.get('/',doubleIngredients);
 
