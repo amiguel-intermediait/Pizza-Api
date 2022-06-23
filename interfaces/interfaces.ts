@@ -23,7 +23,8 @@ export interface ingredientTypeInterface{
   foodtype:string
 }
 
-export interface ingredientAllergent{
+export interface ingredientAllergentInterface{
   name:string,
   isAllergen: boolean
+  foodtype:string
 }

@@ -5,7 +5,7 @@ import sequelize from "../db/db";
 export class ingredient extends Model {}
 ingredient.init({
     name: DataTypes.STRING,
-    calories: DataTypes.INTERGER
+    calories: DataTypes.INTEGER
 }, {
     sequelize,
     modelName: "ingredient",

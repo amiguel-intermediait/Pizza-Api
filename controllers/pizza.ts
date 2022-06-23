@@ -49,7 +49,7 @@ export const removeAllergens = async(req: Request, res: Response) => {
         const { allergens, recipe } = req.body;
         const result =  await removeAllergensService(allergens,recipe);
         res.json({
-
+            result
         })
     } catch (error) {
         console.log(error);
