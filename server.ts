@@ -3,7 +3,7 @@ import connection from './db/db';
 import sequelize from './db/db';
 import pizzaRoutes from './routes/pizza'
 import * as swaggerUi from 'swagger-ui-express';
-// import swaggerJson from './swagger.json';
+import swaggerJson from './swagger.json';
 require('./db/asociations');
 
 class Server {
@@ -35,11 +35,11 @@ class Server {
 
     routes(){
         this.app.use(this.paths.pizza, pizzaRoutes);
-        // this.app.use(
-        //      '/api-docs',
-        //      swaggerUi.serve, 
-        //       swaggerUi.setup(swaggerJson)
-        // );
+        this.app.use(
+             '/api-docs',
+             swaggerUi.serve, 
+              swaggerUi.setup(swaggerJson)
+        );
     }
 
     middlewares(){
