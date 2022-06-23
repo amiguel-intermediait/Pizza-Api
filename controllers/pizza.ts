@@ -6,7 +6,7 @@ const Ingredient = require("../models/ingredient");
 const Foodtype = require("../models/recipe");
 export const hasAllergens = async(req: Request, res: Response) => {
     try {
-        const { allergens, recipe } = req.query;
+        const { allergens, recipe } = req.body;
         const result = hasAllegensService(allergens,recipe);
         res.json({
             result
@@ -54,6 +54,7 @@ export const removeAllergens = async(req: Request, res: Response) => {
         const { allergens, recipe } = req.body;
         const result =  removeAllergensService(allergens,recipe);
         res.json({
+
         })
     } catch (error) {
         console.log(error);
