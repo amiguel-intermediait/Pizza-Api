@@ -1,12 +1,10 @@
 export interface ingredientInterface {
-    id: string;
     name: string;
-    isAllergen: string;
+    isAllergen: boolean;
     foodtype: foodtypeInterface;
   }
 
 export interface foodtypeInterface{
-  id: string,
   name: string,
   isAllergen: boolean
 }
@@ -27,5 +25,5 @@ export interface ingredientTypeInterface{
 
 export interface ingredientAllergent{
   name:string,
-  allergen: boolean
+  isAllergen: boolean
 }
