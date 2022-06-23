@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { hasAllegensService, hasFoodTypeService } from "../services/pizzaService"
+import { hasAllegensService, hasFoodTypeService, removefoodTypesService } from "../services/pizzaService"
 import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredientTypeInterface, ingredientAllergent } from "../interfaces/interfaces";
 const Recipe = require("../models/foodtype") ;
 const Ingredient = require("../models/ingredient");
@@ -30,8 +30,8 @@ export const hasFoodTypes = async(req: Request, res: Response) => {
 
 export const removefoodTypes = async(req: Request, res: Response) => {
     try {
-
-        return res.json(responseArray);
+        const { foodtype, recipe } = req.body;
+        return removefoodTypesService(foodtype,recipe);
     } catch (error) {
         console.log(error);
         res.status(404).json({

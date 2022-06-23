@@ -6,7 +6,7 @@ const router = Router();
 router.get('/allergens', hasAllergens);
 router.get('/foodtypes', hasFoodTypes);
 router.get('/removeallergens', removeAllergens);
-router.get('/removefoodTypes',removefoodTypes);
+router.get('/removefoodtypes',removefoodTypes);
 // router.get('/',removeIngredients);
 // router.get('/',doubleIngredients);
 
