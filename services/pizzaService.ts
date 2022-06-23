@@ -87,13 +87,14 @@ export const removefoodTypesService = async (foodtype: string[], recipe:string) 
         }
     ));
     let responseArray : ingredientTypeInterface[] = [];
-    for(let i = 0; i < ingredientsArray.length; i++){
+    responseArray =ingredientsArray.filter((ingredients) => {
         for(let j = 0; j < foodtypeArray.length; j++){
-            if(ingredientsArray[i].foodtype !== foodtypeArray[j].name){
-                responseArray.push(ingredientsArray[i])
+            if(ingredients.foodtype == foodtypeArray[j].name){
+                return false;
             }
         }
-    }
+        return true;
+    })
     return responseArray;
 }
 
@@ -115,19 +116,19 @@ export const removeAllergensService = async (allergens: string[], recipe:string)
         }
     ));
 
-    const foodtypeArray: arrayStringInterface[] = allergens.map((foodtype: string) => ({
+    const allergensArray: arrayStringInterface[] = allergens.map((foodtype: string) => ({
         name:foodtype
         }
     ));
     let responseArray : ingredientAllergentInterface[] = [];
-    for(let i = 0; i < ingredientsArray.length; i++){
-        for(let j = 0; j < foodtypeArray.length; j++){
-            if(!((ingredientsArray[i].foodtype == foodtypeArray[j].name)&&(ingredientsArray[i].isAllergen))){
-                responseArray.push(ingredientsArray[i])
+    responseArray =ingredientsArray.filter((ingredients) => {
+        for(let j = 0; j < allergensArray.length; j++){
+            if(ingredients.foodtype == allergensArray[j].name){
+                return false;
             }
         }
-    }
- 
+        return true;
+    })
     return responseArray;
 }
 

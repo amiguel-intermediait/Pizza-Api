@@ -3,7 +3,6 @@ import { hasAllegensService, hasFoodTypeService, removeAllergensService, getCalo
 
 export const hasAllergens = async(req: any, res: Response) => {
     try {
-        console.log(req.query);
         const allergens : string[] = req.query.allergens;
         const recipe :string = req.query.recipe;
         return await hasAllegensService(allergens,recipe);
