@@ -22,6 +22,7 @@ export const hasAllergens = async(req: Request, res: Response) => {
                 isAllergen: ingredient.foodtype.isAllergen
             }
         ));
+
         const allergensArray: arrayStringInterface[] = allergens.map((allergen: string) => ({
                 name:allergen
             }
