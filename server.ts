@@ -1,10 +1,10 @@
 import express, { Application } from 'express'
-import connection from '../db/db';
-import sequelize from '../db/db';
-import pizzaRoutes from '../routes/pizza'
+import connection from './db/db';
+import sequelize from './db/db';
+import pizzaRoutes from './routes/pizza'
 import * as swaggerUi from 'swagger-ui-express';
-import swaggerJson from '../swagger.json';
-require('../db/asociations');
+import swaggerJson from './swagger.json';
+require('./db/asociations');
 
 class Server {
     private app: Application;
