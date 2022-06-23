@@ -8,7 +8,7 @@ router.get('/foodtypes', hasFoodTypes);
 router.post('/removeallergens', removeAllergens);
 router.post('/removefoodtypes',removefoodTypes);
 router.get('/:recipe/calories',getCalories);
-router.post('/',doubleIngredients);
+router.post('/doubleingredients',doubleIngredients);
 
 
 

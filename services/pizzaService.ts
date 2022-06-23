@@ -139,11 +139,42 @@ export const getCaloriesService = async (recipe:string) => {
           }
         ],
     });
-    //console.log(ingredients);
     let calories : number =0;
     ingredients.map((ingredient: ingredientInterface) =>{
         calories = calories + ingredient.calories
     });
 
     return calories;
+}
+
+export const doubleIngredientsService = async (ingredient: string[], recipe:string) => {
+    const { ingredients }= await Recipe.findOne({where: { name: recipe  },
+        include: [
+          {
+            model: Ingredient,
+            include: [
+                Foodtype
+            ],
+          }
+        ],
+    });
+    const ingredientsArray: arrayStringInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
+        name: ingredient.name,
+        }
+    ));
+
+    const ingredientsDuplicateArray: arrayStringInterface[] = ingredient.map((ingredient: string) => ({
+        name: ingredient,
+        }
+    ));
+    let responseArray : arrayStringInterface[] = [];
+    for(let i = 0; i < ingredientsArray.length; i++){
+        responseArray.push(ingredientsArray[i])
+        for(let j = 0; j < ingredientsDuplicateArray.length; j++){
+            if((ingredientsArray[i].name == ingredientsDuplicateArray[j].name)){
+                responseArray.push(ingredientsArray[i])
+            }
+        }
+    }
+    return responseArray;
 }
