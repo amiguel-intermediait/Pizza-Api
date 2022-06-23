@@ -35,11 +35,11 @@ class Server {
 
     routes(){
         this.app.use(this.paths.pizza, pizzaRoutes);
-        // this.app.use(
-        //     '/api-docs',
-        //     swaggerUi.serve, 
-        //     // swaggerUi.setup(swaggerJson)
-        //   );
+        this.app.use(
+             '/api-docs',
+             swaggerUi.serve, 
+              swaggerUi.setup(swaggerJson)
+        );
     }
 
     middlewares(){
