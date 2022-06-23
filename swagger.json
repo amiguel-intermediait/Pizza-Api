@@ -1,0 +1,150 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Challenge",
+      "description": "Challenge",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Pizza",
+        "description": "API for Pizza"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+
+
+    "paths": {
+      "/pizza/allergens": {
+        "get": {
+          "tags": ["Pizza"],
+          "summary": "Validate if the recipes has allergens",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/hasAllergensRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/hasAllergensResponse"
+              }
+            }
+          }
+        }
+      },
+      "/pizza/foodtypes": {
+        "get": {
+          "tags": ["Pizza"],
+          "summary": "Validate if the recipes has food types",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/hasFoodTypesRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/hasFoodTypesResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": ["name", "_id", "companies"],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "isPublic": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "hasAllergensRequest": {
+        "required": ["allergens", "recipe"],
+        "properties": {
+          "allergens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recipe": {
+            "type": "string"
+          }
+        }
+      },
+      "hasAllergensResponse": {
+        "type": "boolean"
+      },
+      "hasFoodTypesRequest": {
+        "required": ["foodtype", "recipe"],
+        "properties": {
+          "foodtype": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recipe": {
+            "type": "string"
+          }
+        }
+      },
+      "hasFoodTypesResponse": {
+        "type": "boolean"
+      }
+    }
+
+}
+  

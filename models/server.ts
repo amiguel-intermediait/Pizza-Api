@@ -3,11 +3,10 @@ import connection from '../db/db';
 import sequelize from '../db/db';
 import pizzaRoutes from '../routes/pizza'
 import * as swaggerUi from 'swagger-ui-express';
+import swaggerJson from '../swagger.json';
 require('../db/asociations');
-const swaggerDocument = require('./swagger.json');
 
 class Server {
-
     private app: Application;
     private port: string;
     private paths = {
@@ -39,7 +38,7 @@ class Server {
         this.app.use(
             '/api-docs',
             swaggerUi.serve, 
-            swaggerUi.setup(swaggerDocument)
+            swaggerUi.setup(swaggerJson)
           );
     }
 
