@@ -76,7 +76,8 @@ export const getCalories  = async(req: any, res: Response) => {
 
 export const doubleIngredients  = async(req: Request, res: Response) => {
     try {
-        const { ingredients, recipe } = req.body;
+        const { ingredients } = req.body;
+        const recipe : string = req.params.recipe;
         const result =  await doubleIngredientsService(ingredients,recipe);
         res.json({
             result
