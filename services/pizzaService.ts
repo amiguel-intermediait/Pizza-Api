@@ -2,7 +2,6 @@ import e from "express";
 import {  arrayStringInterface, foodtypeInterface, ingredientInterface, ingredientTypeInterface, ingredientAllergent } from "../interfaces/interfaces";
 const Recipe = require("../models/foodtype") ;
 const Ingredient = require("../models/ingredient");
-import {ingredient} from '../models/ingredient';
 const Foodtype = require("../models/recipe");
 
 export const hasAllegensService = async (allergens: string[], recipe:string) => {
@@ -18,7 +17,7 @@ export const hasAllegensService = async (allergens: string[], recipe:string) => 
       });
 
     
-    const ingredientsArray: foodtypeInterface[] = ingredients.map((ingredient: ingredient) => ({
+    const ingredientsArray: foodtypeInterface[] = ingredients.map((ingredient: ingredientInterface) => ({
             name: ingredient.foodtype.name,
             isAllergen: ingredient.foodtype.isAllergen
         }
