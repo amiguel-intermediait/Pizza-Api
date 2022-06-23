@@ -130,3 +130,20 @@ export const removeAllergensService = async (allergens: string[], recipe:string)
  
     return responseArray;
 }
+
+export const getCaloriesService = async (recipe:string) => {
+    const {ingredients}= await Recipe.findOne({where: { name: recipe  },
+        include: [
+          {
+            model: Ingredient
+          }
+        ],
+    });
+    //console.log(ingredients);
+    let calories : number =0;
+    ingredients.map((ingredient: ingredientInterface) =>{
+        calories = calories + ingredient.calories
+    });
+
+    return calories;
+}

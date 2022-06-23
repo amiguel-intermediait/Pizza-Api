@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { hasAllegensService, hasFoodTypeService, removeAllergensService, removefoodTypesService } from "../services/pizzaService"
+import { hasAllegensService, hasFoodTypeService, removeAllergensService, getCaloriesService, removefoodTypesService } from "../services/pizzaService"
 
 export const hasAllergens = async(req: any, res: Response) => {
     try {
@@ -57,6 +57,25 @@ export const removeAllergens = async(req: Request, res: Response) => {
             msg:"Recipe doesn't exist"
         })
     }
+}
+
+export const getCalories  = async(req: any, res: Response) => {
+    try {
+        const recipe : string = req.params.recipe;
+        const calories =  await getCaloriesService(recipe);
+        res.json({
+            calories
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            msg:"Recipe doesn't exist"
+        })
+    }
+}
+
+export const doubleIngredients  = async(req: Request, res: Response) => {
+
 }
 
 

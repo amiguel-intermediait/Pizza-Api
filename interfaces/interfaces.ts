@@ -1,5 +1,6 @@
 export interface ingredientInterface {
     name: string;
+    calories: number
     isAllergen: true;
     foodtype: foodtypeInterface;
   }
