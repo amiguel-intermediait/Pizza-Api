@@ -161,6 +161,38 @@
             }
           }
         }
+      },
+      "/:recipe/doubleingredients": {
+        "post": {
+          "tags": ["Pizza"],
+          "summary": "double ingredients",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipe",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/doubleIngredientsRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/getCaloriesResponse"
+              }
+            }
+          }
+        }
       }
     },
   
@@ -203,6 +235,17 @@
         "properties": {
           "calories": {
             "type": "number"
+          }
+        }
+      },
+      "doubleIngredientsRequest": {
+        "required": ["allergens"],
+        "properties": {
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

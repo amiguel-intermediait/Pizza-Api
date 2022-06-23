@@ -3,7 +3,7 @@ const Recipe = require("../models/recipe") ;
 const Ingredient = require("../models/ingredient");
 const Foodtype = require("../models/foodtype");
 
-export const hasAllegensService = async (allergens: string[], recipe:string) => {
+export const hasAllegensService = async (allergens: string[], recipe:string) : Promise<boolean> => {
     const { ingredients } = await Recipe.findOne({where: { name: recipe  },
         include: [
           {
@@ -37,7 +37,7 @@ export const hasAllegensService = async (allergens: string[], recipe:string) => 
     return false;
 }
 
-export const hasFoodTypeService = async (foodtype: string[], recipe:string) => {
+export const hasFoodTypeService = async (foodtype: string[], recipe:string)  : Promise<boolean> => {
     const { ingredients } = await Recipe.findOne({where: { name: recipe  },
         include: [
           {
@@ -66,7 +66,7 @@ export const hasFoodTypeService = async (foodtype: string[], recipe:string) => {
     return false;
 }
 
-export const removefoodTypesService = async (foodtype: string[], recipe:string) => {
+export const removefoodTypesService = async (foodtype: string[], recipe:string) : Promise<ingredientTypeInterface[]> => {
     const { ingredients } = await Recipe.findOne({where: { name: recipe  },
         include: [
           {
@@ -98,7 +98,7 @@ export const removefoodTypesService = async (foodtype: string[], recipe:string) 
     return responseArray;
 }
 
-export const removeAllergensService = async (allergens: string[], recipe:string) => {
+export const removeAllergensService = async (allergens: string[], recipe:string) : Promise<ingredientAllergentInterface[]>  => {
     const { ingredients }= await Recipe.findOne({where: { name: recipe  },
         include: [
           {
@@ -132,7 +132,7 @@ export const removeAllergensService = async (allergens: string[], recipe:string)
     return responseArray;
 }
 
-export const getCaloriesService = async (recipe:string) => {
+export const getCaloriesService = async (recipe:string) : Promise<number> => {
     const {ingredients}= await Recipe.findOne({where: { name: recipe  },
         include: [
           {
